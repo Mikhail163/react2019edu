@@ -23,7 +23,7 @@ export default class UserListComtainer extends PureComponent {
             this.setState({loading: true});
         }
         
-        fetch(`https://jsonplaceholder.typicode.com/posts?Limit=10&_page=${page}`)
+        fetch(`https://jsonplaceholder.typicode.com/users?Limit=10&_page=${page}`)
             .then((response) => response.json())
             .then((results) => {
                 this.setState({

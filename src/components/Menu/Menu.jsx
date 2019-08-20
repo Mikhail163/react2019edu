@@ -1,16 +1,20 @@
 import './Menu.css';
-
+import classNames from 'classnames';
 import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
-export default class Menu extends Component {
-    render () {
-        const { items } = this.props;
+class Menu extends Component {
+    render() {
+        const { location } = this.props;
         return (
-        <div className="menu">
-            <ul>
-                {items.map(item => <li><a href="{item.link}">{item.title}</a></li>)}
-            </ul>
-        </div>
+            <div className="menu">
+                <ul>
+                    <li className={classNames({ active: location.pathname == "/"})}><Link to="/">Counter</Link></li>
+                    <li className={classNames({ active: location.pathname == "/users"})}><Link to="/users">Users</Link></li>
+                </ul>
+            </div>
         );
     }
 }
+
+export default withRouter(Menu);

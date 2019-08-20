@@ -15,7 +15,7 @@ module.exports = {
     },
     // подстановка расширений
     resolve: {
-        extensions: ['.js', '.jsx', '.ts'],
+        extensions: ['.tsx', '.js', '.jsx', '.ts'],
         // прописывание алиасов на пути
         alias: {
             components: path.resolve(__dirname, 'src/components'),
@@ -40,7 +40,12 @@ module.exports = {
                     use: ['css-loader', 'postcss-loader', 'sass-loader'],
                 }),
             },
-        ]      
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
+            }
+        ]
     },
     plugins: [
         new ExtractTextPlagin({
@@ -56,7 +61,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         //compress:true,
-        port:8080,
+        port: 8080,
         historyApiFallback: true, // для роутинга понадобится
     }
 }
